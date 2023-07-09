@@ -7,10 +7,7 @@ function Cart() {
   const { order } = useOrder();
 
   return (
-    <div
-      className="overflow-auto border-l p-4"
-      style={{ scrollBehavior: "smooth" }}
-    >
+    <div className="h-screen overflow-auto border-l p-4">
       <h2 className="mb-2 text-lg font-semibold">ご注文一覧</h2>
       <ul>
         {[...order.entries()].map(([item, count], i) => (

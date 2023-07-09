@@ -7,18 +7,18 @@ const useOrder = () => {
 
   const add = (item: string) => {
     setOrderCounts(
-      (prevCounts) =>
-        new Map(prevCounts.set(item, (prevCounts.get(item) || 0) + 1))
+      (prevOrder) =>
+        new Map(prevOrder.set(item, (prevOrder.get(item) || 0) + 1))
     );
   };
 
   const pop = (item: string) => {
-    setOrderCounts((prevCounts) => {
-      const currentCount = prevCounts.get(item) || 0;
+    setOrderCounts((prevOrder) => {
+      const currentCount = prevOrder.get(item) || 0;
       const nextCount = currentCount > 0 ? currentCount - 1 : 0;
       return nextCount > 0
-        ? new Map(prevCounts.set(item, nextCount))
-        : new Map([...prevCounts].filter(([key]) => key !== item));
+        ? new Map(prevOrder.set(item, nextCount))
+        : new Map([...prevOrder].filter(([key]) => key !== item));
     });
   };
 
