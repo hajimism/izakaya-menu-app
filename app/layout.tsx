@@ -11,7 +11,7 @@ export const metadata = {
 
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
-    <html lang="en">
+    <html lang="ja" className="scroll-smooth">
       <body className={inter.className}>{children}</body>
     </html>
   );
