@@ -1,5 +1,7 @@
 import menuData from "@/menu.json";
 
+import { AddButton } from "./Button";
+
 function Menu() {
   return (
     <div className="flex h-screen flex-col gap-4 overflow-auto p-4">
@@ -11,8 +13,12 @@ function Menu() {
           </h2>
           <ul className="grid grid-cols-2 gap-4">
             {(menuData.menu as any)[genre].map((item: string) => (
-              <li key={item} className="my-2 rounded bg-white p-4 shadow">
+              <li
+                key={item}
+                className="my-2 flex items-center justify-between gap-2 rounded bg-white p-4 shadow"
+              >
                 <p>{item}</p>
+                <AddButton item={item} />
               </li>
             ))}
           </ul>
