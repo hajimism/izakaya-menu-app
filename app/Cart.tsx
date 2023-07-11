@@ -1,6 +1,7 @@
 "use client";
 
 import { AddButton, PopButton } from "./Button";
+import Dictaphone from "./SpeechRecognitionButton";
 import useOrder from "./useOrder";
 
 function Cart() {
@@ -21,6 +22,7 @@ function Cart() {
           </li>
         ))}
       </ul>
+      <Dictaphone />
     </div>
   );
 }
