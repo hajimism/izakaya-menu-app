@@ -1,40 +1,46 @@
 import "client-only";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export const useSpeech = () => {
   const [transcript, setTranscript] = useState("");
   const [isListening, setIsListening] = useState(false);
-  const [recognition] = useState(new window.webkitSpeechRecognition());
+  const [recognition, setRecognition] = useState<SpeechRecognition>();
+
+  useEffect(() => {
+    if (window) {
+      const r = new window.webkitSpeechRecognition();
+      r.continuous = true;
+      r.interimResults = true;
+      r.lang = "ja";
+
+      r.onresult = (event) => {
+        const currentTranscript = Array.from(event.results)
+          .map((result) => result[0])
+          .map((result) => result?.transcript)
+          .join("");
+
+        setTranscript(currentTranscript);
+      };
+
+      r.onerror = (event) => {
+        console.error(event.error);
+      };
+
+      r.onend = () => {
+        setIsListening(false);
+      };
+      setRecognition(r);
+    }
+  }, []);
 
   const startListening = useCallback(() => {
-    recognition.continuous = true;
-    recognition.interimResults = true;
-    recognition.lang = "ja";
-
-    recognition.onresult = (event) => {
-      const currentTranscript = Array.from(event.results)
-        .map((result) => result[0])
-        .map((result) => result?.transcript)
-        .join("");
-
-      setTranscript(currentTranscript);
-    };
-
-    recognition.onerror = (event) => {
-      console.error(event.error);
-    };
-
-    recognition.onend = () => {
-      setIsListening(false);
-    };
-
-    recognition.start();
+    recognition?.start();
     setIsListening(true);
   }, [recognition]);
 
   const stopListening = useCallback(() => {
-    recognition.stop();
+    recognition?.stop();
     setIsListening(false);
   }, [recognition]);
 
