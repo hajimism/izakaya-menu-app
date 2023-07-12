@@ -49,6 +49,7 @@
     "@storybook/react": "^7.0.24",
     "@storybook/testing-library": "^0.0.14-next.2",
     "@tsconfig/strictest": "^2.0.1",
+    "@types/react-speech-recognition": "^3.9.2",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-storybook": "^0.6.12",
