@@ -4,7 +4,7 @@ import { AddButton } from "./Button";
 
 function Menu() {
   return (
-    <div className="flex h-screen flex-col gap-4 overflow-auto p-4">
+    <div className="flex flex-col gap-4 overflow-auto p-4">
       <h1 className="mb-6 mt-2 text-2xl font-bold">メニュー一覧</h1>
       {Object.keys(menuData.menu).map((genre, index) => (
         <div key={index} className="rounded bg-white p-4 shadow">
